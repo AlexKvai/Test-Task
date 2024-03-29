@@ -6,6 +6,12 @@ import { DoctorsDto } from './dto/doctors.dto';
 export class DoctorsService {
   constructor(private prisma: PrismaService) {}
 
+  async getById(id: string) {
+    return this.prisma.doctors.findUnique({
+      where: { id },
+    });
+  }
+
   async create(dto: DoctorsDto) {
     const doctor = {
       name: dto.name,

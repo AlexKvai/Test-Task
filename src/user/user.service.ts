@@ -12,6 +12,12 @@ export class UserService {
     });
   }
 
+  async getById(id: string) {
+    return this.prisma.patients.findUnique({
+      where: { id },
+    });
+  }
+
   async getByPhone(phone: string) {
     return this.prisma.patients.findUnique({
       where: { phone },
