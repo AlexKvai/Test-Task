@@ -6,5 +6,6 @@ import { DoctorsService } from './doctors.service';
 @Module({
   controllers: [DoctorsController],
   providers: [DoctorsService, PrismaService],
+  exports: [DoctorsService],
 })
 export class DoctorsModule {}
