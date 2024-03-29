@@ -41,7 +41,7 @@ model Schedule {
   time_from  DateTime @db.Timestamp()
   time_to    DateTime @db.Timestamp()
   is_free    Boolean  @default(true)
-  patient_id Int?
+  patient_id String
   type       Int      @default(0)
   record     Record[]
 
@@ -57,5 +57,5 @@ model Record {
   schedule    Schedule @relation(fields: [schedule_id], references: [id])
   schedule_id String
 
-  @@map("Record")
+  @@map("record")
 }
