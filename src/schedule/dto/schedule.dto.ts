@@ -17,9 +17,6 @@ export class ScheduleDto {
   @IsDateString()
   time_to: string;
 
-  @IsString()
-  patient_id: string;
-
   @IsBoolean()
   is_free: boolean;
 
