@@ -25,7 +25,7 @@ export class MailerService {
     const transporter = this.mailTransport();
 
     const result = await transporter.sendMail({
-      from: '"МИС" <mis@example.com>',
+      from: dto.from || '"МИС" <mis@example.com>',
       subject,
       text,
       to,
