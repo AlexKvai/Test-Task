@@ -6,7 +6,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ScheduleDto } from './dto/schedule.dto';
+import { GetScheduleDto, ScheduleDto } from './dto/schedule.dto';
 import { ScheduleService } from './schedule.service';
 
 @Controller('schedule')
@@ -18,5 +18,12 @@ export class ScheduleController {
   @Post('create')
   async create(@Body() dto: ScheduleDto) {
     return this.scheduleService.create(dto);
+  }
+
+  @UsePipes(new ValidationPipe())
+  @HttpCode(200)
+  @Post('get')
+  async getSchedule(@Body() dto: GetScheduleDto) {
+    return this.scheduleService.getSchedule(dto);
   }
 }
