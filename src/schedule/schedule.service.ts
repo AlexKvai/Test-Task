@@ -10,6 +10,12 @@ export class ScheduleService {
     private doctorsService: DoctorsService,
   ) {}
 
+  async getById(id: string) {
+    return this.prisma.schedule.findUnique({
+      where: { id },
+    });
+  }
+
   async create(dto: ScheduleDto) {
     const isDoctor = await this.doctorsService.getById(dto.doctor_id);
     if (!isDoctor) throw new BadRequestException('Врача не существует');
