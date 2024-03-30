@@ -15,8 +15,8 @@ export class ScheduleController {
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
-  @Post('register')
-  async register(@Body() dto: ScheduleDto) {
+  @Post('create')
+  async create(@Body() dto: ScheduleDto) {
     return this.scheduleService.create(dto);
   }
 }

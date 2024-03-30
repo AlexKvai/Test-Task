@@ -14,8 +14,8 @@ export class DoctorsController {
   constructor(private readonly doctorsService: DoctorsService) {}
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
-  @Post('register')
-  async register(@Body() dto: DoctorsDto) {
+  @Post('create')
+  async create(@Body() dto: DoctorsDto) {
     return this.doctorsService.create(dto);
   }
 }
