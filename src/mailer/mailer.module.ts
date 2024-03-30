@@ -7,5 +7,6 @@ import { MailerService } from './mailer.service';
   imports: [ConfigModule.forRoot()],
   controllers: [MailerController],
   providers: [MailerService],
+  exports: [MailerService],
 })
 export class MailerModule {}
