@@ -16,11 +16,11 @@ export class RecordService {
 
   async create(dto: RecordDto) {
     const isDoctor = await this.doctorsService.getById(dto.doctor_id);
-    const isPatient = await this.userService.getById(dto.patient_id);
+    const patient = await this.userService.getById(dto.patient_id);
     const schedule = await this.scheduleService.getById(dto.schedule_id);
     const currentDT = new Date(Date.now());
     if (!isDoctor) throw new BadRequestException('Врача не существует');
-    if (!isPatient) throw new BadRequestException('Пациента не существует');
+    if (!patient) throw new BadRequestException('Пациента не существует');
     if (!schedule) throw new BadRequestException('Такой записи не существует');
     if (schedule.time_from < currentDT) {
       throw new BadRequestException('Слот недоступен для записи');
@@ -40,13 +40,13 @@ export class RecordService {
           where: { id: schedule.id },
           data: {
             is_free: false,
+            patient_id: patient.id,
           },
         });
         await this.prisma.$disconnect();
         return record;
       })
       .catch(async (e) => {
-        console.error(e);
         await this.prisma.$disconnect();
         throw new BadRequestException('Непредвиденная ошибка');
       });
