@@ -7,9 +7,10 @@ import { RecordModule } from './record/record.module';
 import { ScheduleModule } from './schedule/schedule.module';
 import { UserModule } from './user/user.module';
 import { DoctorsModule } from './doctors/doctors.module';
+import { MailerModule } from './mailer/mailer.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, RecordModule, ScheduleModule, UserModule, DoctorsModule],
+  imports: [ConfigModule.forRoot(), AuthModule, RecordModule, ScheduleModule, UserModule, DoctorsModule, MailerModule],
   controllers: [AppController],
   providers: [AppService],
 })
