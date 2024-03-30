@@ -2,6 +2,7 @@ import {
   IsBoolean,
   IsDateString,
   IsInt,
+  IsOptional,
   IsString,
   Max,
   Min,
@@ -20,8 +21,37 @@ export class ScheduleDto {
   @IsBoolean()
   is_free: boolean;
 
+  @IsOptional()
+  @IsString()
+  patient_id: string;
+
   @IsInt()
   @Min(0)
   @Max(1)
   type: number;
+}
+
+export class GetScheduleDto {
+  @IsDateString()
+  date: string;
+
+  @IsOptional()
+  @IsString()
+  doctor_id: string;
+
+  @IsOptional()
+  @IsDateString()
+  time_from: string;
+
+  @IsOptional()
+  @IsDateString()
+  time_to: string;
+
+  @IsOptional()
+  @IsBoolean()
+  is_free: boolean;
+
+  @IsOptional()
+  @IsString()
+  patient_id: string;
 }
